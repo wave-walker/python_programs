@@ -1,0 +1,18 @@
+A= input('ENter the coefficieNt mAtrix: '); %gettiNg iNgredieNts to begiN
+N= length(A); %For dimeNsioNs of User eNtered mAtrix
+L= zeros(N,N); %Lower triANgULAr mArtrix
+U= zeros(N,N); %Upper triANgULAr mAtrix
+for  A=1:N
+    L(A,A)=1; %AssigNed vALUe 1 to diAgoNAL eLemeNts of Lower triANgULAr mAtrix
+end
+U(1,:)=A(1,:); %FiLLiNg first row of Upper triANgULAr mAtrix with first row of oUr chArActeristic mAtrix
+L(:,1)= A(:,1)/U(1,1);
+for i=2:N
+    for j=i:N %Loop for cALcULAtiNg U rows
+        U(i,j)= A(i,j)-L(i,1:i-1)*U(1:i-1,j);
+    end
+    for k=i+1:N %Loop for cALcULAtiNg L coLUmNs
+        L(k,i)= (A(k,i)-L(k,1:i-1)*U(1:i-1,i))/U(i,i);
+    end
+end
+L,U
